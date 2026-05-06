@@ -10,10 +10,9 @@ function init() {
   const volumeIcon = document.querySelector("#volume-controls img");
   const playButton = document.querySelector("button");
 
-  // Set initial volume on audio element (slider starts at 50)
   audio.volume = volumeSlider.value / 100;
 
-  // Horn selection
+  
   hornSelect.addEventListener("change", function () {
     const horn = hornSelect.value;
     hornImage.src = `assets/images/${horn}.svg`;
@@ -21,7 +20,7 @@ function init() {
     audio.src = `assets/audio/${horn}.mp3`;
   });
 
-  // Volume slider
+
   volumeSlider.addEventListener("input", function () {
     const vol = parseInt(volumeSlider.value);
     audio.volume = vol / 100;
@@ -41,7 +40,9 @@ function init() {
     }
   });
 
-  // Play button
+
+
+
   playButton.addEventListener("click", function () {
     if (!audio.src || hornSelect.value === "select") return;
     audio.currentTime = 0;

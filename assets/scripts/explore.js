@@ -13,7 +13,6 @@ function init() {
 
   function populateVoices() {
     voices = synth.getVoices();
-    // Clear existing options (keep the placeholder)
     voiceSelect.innerHTML =
       '<option value="select" disabled selected>Select Voice:</option>';
     voices.forEach((voice, index) => {
@@ -24,7 +23,6 @@ function init() {
     });
   }
 
-  // Voices load asynchronously in most browsers
   populateVoices();
   if (synth.onvoiceschanged !== undefined) {
     synth.onvoiceschanged = populateVoices;
@@ -34,14 +32,19 @@ function init() {
     const text = textarea.value;
     if (!text || voiceSelect.value === "select") return;
 
+
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.voice = voices[voiceSelect.value];
+
+
 
     utterance.onstart = function () {
       faceImg.src = "assets/images/smiling-open.png";
       faceImg.alt = "Smiling face open";
     };
 
+
+    
     utterance.onend = function () {
       faceImg.src = "assets/images/smiling.png";
       faceImg.alt = "Smiling face";
